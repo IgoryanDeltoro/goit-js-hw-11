@@ -22,22 +22,23 @@ refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
 let totaPaginate = 0;
 
-function onSearch(eve) {
-  eve.preventDefault();
-  form = eve.currentTarget.elements.searchQuery.value.trim();
+function onSearch(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const searchQuery = form.elements.searchQuery.value.trim();
 
-  if (form !== '') {
+  if (searchQuery !== '') {
     clearArticles();
     LoadMoreBtn.hide();
     LoadMoreBtn.disable();
-    ImagesApiServes.query = form;
+    ImagesApiServes.query = searchQuery;
     ImagesApiServes.resetPage();
     ImagesApiServes.queryOnServer()
       .then(responseСheck)
       .then(showTotalElements)
       .then(renderOnPage)
       .catch(showingError)
-      .finally(eve.currentTarget.reset());
+      .finally(event.currentTarget.reset());
   }
 }
 
