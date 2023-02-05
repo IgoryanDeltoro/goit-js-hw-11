@@ -1,0 +1,187 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fafafa;
+  color: #212121;
+  line-height: 1.5;
+  padding: 0;
+  margin: 0;
+}
+
+#search-box {
+  font: inherit;
+  padding: 8px;
+  max-width: 320px;
+  margin-bottom: 16px;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0 15px;
+  margin-top: 80px;
+}
+@media screen and (min-width: 480px) {
+  .container {
+    max-width: 480px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1350px;
+  }
+}
+
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background-color: #2779a7;
+  background-image: url('../images/beautiful-clouds-blue-sky.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 10px 10px 8px 2px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 768px) {
+  .logo-box {
+    display: none;
+  }
+}
+
+.header-box {
+  width: 100%;
+  height: 70px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+}
+.search-form {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input {
+  border: 0;
+  outline: 0;
+}
+input:focus {
+  outline: none !important;
+}
+
+input[name='searchQuery'] {
+  width: 300px;
+  height: 40px;
+  border-radius: 20px 0 0 20px;
+  background: whitesmoke;
+  padding: 10px 20px;
+  font-size: 17px;
+  border: 1px solid rgb(178, 178, 178);
+  border-right: 0;
+  float: left;
+}
+button[type='submit'] {
+  display: flex;
+  align-items: center;
+  width: 50px;
+  height: 40px;
+  background: whitesmoke;
+  border-radius: 0 20px 20px 0;
+  border: 1px solid rgb(178, 178, 178);
+  border-left: 0;
+  cursor: pointer;
+}
+.svg:hover {
+  fill: #2779a7;
+}
+.searchbox {
+  display: flex;
+}
+
+.gallery__item {
+  text-decoration: none;
+  color: inherit;
+}
+
+.photo-card {
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+.photo-img {
+  display: block;
+  margin: 0;
+  width: 100%;
+  height: 200px;
+}
+.info {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: whitesmoke;
+}
+.info-item {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 14px;
+}
+
+.load-more {
+  display: block;
+  margin: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 170px;
+  height: 40px;
+  background-color: #2779a7;
+  border-radius: 5px;
+  border: 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: whitesmoke;
+}
+
+.load-more.is-hidden {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .photo-card:not(:last-child) {
+    margin-bottom: 25px;
+  }
+  .info {
+    justify-content: space-around;
+  }
+}
+@media screen and (min-width: 768px) {
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .photo-card {
+    width: calc((100% - 30px) / 2);
+  }
+}
+@media screen and (min-width: 1200px) {
+  .photo-card {
+    width: calc((100% - 30px) / 4);
+  }
+}
