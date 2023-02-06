@@ -4,7 +4,7 @@ export default () => {
     .firstElementChild.getBoundingClientRect();
 
   window.scrollBy({
-    top: cardHeight * 1.73,
+    top: cardHeight * 2,
     behavior: 'smooth',
   });
 };
