@@ -22,7 +22,7 @@ refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
 let totaPaginate = 0;
 
-function onSearch(event) {
+async function onSearch(event) {
   event.preventDefault();
   const form = event.currentTarget;
   const searchQuery = form.elements.searchQuery.value.trim();
@@ -32,22 +32,28 @@ function onSearch(event) {
     LoadMoreBtn.hide();
     LoadMoreBtn.disable();
     ImagesApiServes.query = searchQuery;
+    event.currentTarget.reset();
     ImagesApiServes.resetPage();
-    ImagesApiServes.queryOnServer()
-      .then(responseСheck)
-      .then(showTotalElements)
-      .then(renderOnPage)
-      .catch(showingError)
-      .finally(event.currentTarget.reset());
+    try {
+      const response = await ImagesApiServes.queryOnServer();
+      const checkedResponse = await responseСheck(response);
+      showTotalElements(checkedResponse);
+      renderOnPage(checkedResponse);
+    } catch {
+      showingError();
+    }
   }
 }
 
-function onLoadMore() {
-  ImagesApiServes.queryOnServer()
-    .then(responseСheck)
-    .then(renderOnPage)
-    .catch(showingError)
-    .finally(hideBtnOnTheEnd);
+async function onLoadMore() {
+  try {
+    const response = await ImagesApiServes.queryOnServer();
+    const checkedResponse = await responseСheck(response);
+    renderOnPage(checkedResponse);
+    hideBtnOnTheEnd();
+  } catch {
+    showingError();
+  }
 }
 
 function responseСheck(response) {
@@ -61,8 +67,10 @@ function renderOnPage(response) {
   const createHTML = response.hits.map(el => template(el)).join('');
   refs.output.insertAdjacentHTML('beforeend', createHTML);
   gallery.refresh();
-  LoadMoreBtn.show();
-  LoadMoreBtn.enable();
+  if (response.totalHits >= 40) {
+    LoadMoreBtn.show();
+    LoadMoreBtn.enable();
+  }
 }
 
 function clearArticles() {

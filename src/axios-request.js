@@ -10,15 +10,11 @@ export default class ImagApiServes {
   }
 
   async queryOnServer() {
-    try {
-      const response = await axios.get(
-        `${ENDPOINT_URL}?key=${KEY_REQUEST}&q=${this.searchQuery}${PARAMETERS}&page=${this.page}`
-      );
-      this.incrementPage();
-      return response.data;
-    } catch {
-      console.log(error);
-    }
+    const response = await axios.get(
+      `${ENDPOINT_URL}?key=${KEY_REQUEST}&q=${this.searchQuery}${PARAMETERS}&page=${this.page}`
+    );
+    this.incrementPage();
+    return response.data;
   }
 
   incrementPage() {
