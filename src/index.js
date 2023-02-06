@@ -91,7 +91,6 @@ function showTotalElements(response) {
   Notify.success(`Hooray! We found ${response.totalHits} images.`, {
     timeout: 5000,
   });
-  return response;
 }
 
 function onTheEndSearch() {
